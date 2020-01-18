@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/micropython/micropython.png?branch=master)](https://travis-ci.org/micropython/micropython) [![Coverage Status](https://coveralls.io/repos/micropython/micropython/badge.png?branch=master)](https://coveralls.io/r/micropython/micropython?branch=master)
+This is a port of Micropython adapted for running on Temple OS.
+
+Specifically I changed the port in ports/unix.  Even more specifically I changed the "minimal" version of this port.  The minimal version of this port for Temple OS contains an amount off functionality somewhere between the regular and minimal normal unix ports.  See source code for details.  Please don't try to compile this, it requires other external assembly code to work.  I'm mainly putting it up for reference and license reasons.
 
 The MicroPython project
 =======================
