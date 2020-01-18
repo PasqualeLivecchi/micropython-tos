@@ -27,6 +27,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdarg.h>
 
 #include "py/mpconfig.h"
 #include "py/misc.h"
@@ -34,6 +35,15 @@
 
 #if MICROPY_DEBUG_VERBOSE // print debugging info
 #define DEBUG_printf DEBUG_printf
+/*
+void DEBUG_printf(const char *fmt, ...) {
+  va_list ap;
+  va_start(ap, fmt);
+  vprintf(fmt, ap);
+  va_end(ap);
+}
+*/
+
 #else // don't print debugging info
 #define DEBUG_printf(...) (void)0
 #endif

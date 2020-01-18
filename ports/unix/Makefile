@@ -150,6 +150,7 @@ SRC_C = \
 	file.c \
 	modmachine.c \
 	modos.c \
+	modtos.c \
 	moduos_vfs.c \
 	modtime.c \
 	moduselect.c \

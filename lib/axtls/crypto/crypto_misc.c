@@ -103,6 +103,7 @@ int get_file(const char *filename, uint8_t **buf)
  */
 EXP_FUNC void STDCALL RNG_initialize()
 {
+/*
 #if !defined(WIN32) && defined(CONFIG_USE_DEV_URANDOM)
     rng_fd = open("/dev/urandom", O_RDONLY);
 #elif defined(WIN32) && defined(CONFIG_WIN32_USE_CRYPTO_LIB)
@@ -121,12 +122,14 @@ EXP_FUNC void STDCALL RNG_initialize()
         }
     }
 #elif !defined(__ets__)
-    /* start of with a stack to copy across */
+    // start of with a stack to copy across
     int i;
     memcpy(entropy_pool, &i, ENTROPY_POOL_SIZE);
     rand_r((unsigned int *)entropy_pool); 
 #endif
+*/
 }
+
 
 /**
  * If no /dev/urandom, then initialise the RNG with something interesting.

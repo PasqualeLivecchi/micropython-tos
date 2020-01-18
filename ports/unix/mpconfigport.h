@@ -56,10 +56,10 @@
 // check stdout a chance to pass, etc.
 #define MICROPY_DEBUG_PRINTER       (&mp_stderr_print)
 #define MICROPY_READER_POSIX        (1)
-#define MICROPY_USE_READLINE_HISTORY (1)
-#define MICROPY_HELPER_REPL         (1)
-#define MICROPY_REPL_EMACS_KEYS     (1)
-#define MICROPY_REPL_AUTO_INDENT    (1)
+#define MICROPY_USE_READLINE_HISTORY (0)
+#define MICROPY_HELPER_REPL         (0)
+#define MICROPY_REPL_EMACS_KEYS     (0)
+#define MICROPY_REPL_AUTO_INDENT    (0)
 #define MICROPY_HELPER_LEXER_UNIX   (1)
 #define MICROPY_ENABLE_SOURCE_LINE  (1)
 #define MICROPY_FLOAT_IMPL          (MICROPY_FLOAT_IMPL_DOUBLE)
@@ -186,6 +186,8 @@ extern const struct _mp_obj_module_t mp_module_termios;
 extern const struct _mp_obj_module_t mp_module_socket;
 extern const struct _mp_obj_module_t mp_module_ffi;
 extern const struct _mp_obj_module_t mp_module_jni;
+extern const struct _mp_obj_module_t tos_module;
+
 
 #if MICROPY_PY_UOS_VFS
 #define MICROPY_PY_UOS_DEF { MP_ROM_QSTR(MP_QSTR_uos), MP_ROM_PTR(&mp_module_uos_vfs) },
@@ -229,6 +231,7 @@ extern const struct _mp_obj_module_t mp_module_jni;
     MICROPY_PY_UTIME_DEF \
     MICROPY_PY_SOCKET_DEF \
     { MP_ROM_QSTR(MP_QSTR_umachine), MP_ROM_PTR(&mp_module_machine) }, \
+    { MP_OBJ_NEW_QSTR(MP_QSTR_tos), (mp_obj_t)&tos_module }, \
     MICROPY_PY_UOS_DEF \
     MICROPY_PY_USELECT_DEF \
     MICROPY_PY_TERMIOS_DEF \

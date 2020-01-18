@@ -136,6 +136,11 @@ STATIC void next_char(mp_lexer_t *lex) {
     lex->chr1 = lex->chr2;
     lex->chr2 = lex->reader.readbyte(lex->reader.data);
 
+    // Skip Temple OS DolDoc saved cursor position byte
+    if (lex->chr2 == 0x05) {
+        lex->chr2 = lex->reader.readbyte(lex->reader.data);
+    }
+
     if (lex->chr1 == '\r') {
         // CR is a new line, converted to LF
         lex->chr1 = '\n';

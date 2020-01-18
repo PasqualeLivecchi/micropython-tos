@@ -181,8 +181,10 @@ STATIC char *strjoin(const char *s1, int sep_char, const char *s2) {
 #endif
 
 STATIC int do_repl(void) {
+    //mp_hal_stdout_tx_str("MicroPython " MICROPY_GIT_TAG " on " MICROPY_BUILD_DATE "; "
+    //    MICROPY_PY_SYS_PLATFORM " version\nUse Ctrl-D to exit, Ctrl-E for paste mode\n");
     mp_hal_stdout_tx_str("MicroPython " MICROPY_GIT_TAG " on " MICROPY_BUILD_DATE "; "
-        MICROPY_PY_SYS_PLATFORM " version\nUse Ctrl-D to exit, Ctrl-E for paste mode\n");
+        MICROPY_PY_SYS_PLATFORM " version\n");
 
     #if MICROPY_USE_READLINE == 1
 
@@ -625,6 +627,8 @@ MP_NOINLINE int main_(int argc, char **argv) {
                 return usage(argv);
             }
         } else {
+
+    /*
             char *pathbuf = malloc(PATH_MAX);
             char *basedir = realpath(argv[a], pathbuf);
             if (basedir == NULL) {
@@ -638,7 +642,7 @@ MP_NOINLINE int main_(int argc, char **argv) {
             char *p = strrchr(basedir, '/');
             path_items[0] = mp_obj_new_str_via_qstr(basedir, p - basedir);
             free(pathbuf);
-
+*/
             set_sys_argv(argv, argc, a);
             ret = do_file(argv[a]);
             break;
@@ -705,6 +709,22 @@ uint mp_import_stat(const char *path) {
     return MP_IMPORT_STAT_NO_EXIST;
 }
 #endif
+
+uint mp_vfs_import_stat_tos(const char *path) {
+    struct stat st;
+    if (stat(path, &st) == 0) {
+        uint64_t *tmp=&st;
+        if (tmp[0]==1) {
+            //DEBUG_printf("mp_vfs_import_stat_tos stat found dir: %s\n",path);
+            return MP_IMPORT_STAT_DIR;
+        } else if ((tmp[0]==0) && (tmp[1] == 1)) {
+            //DEBUG_printf("mp_vfs_import_stat_tos stat found file: %s\n",path);
+            return MP_IMPORT_STAT_FILE;
+        }
+    }
+    //DEBUG_printf("mp_vfs_import_stat_tos stat failed: %s\n",path);
+    return MP_IMPORT_STAT_NO_EXIST;
+}
 
 void nlr_jump_fail(void *val) {
     printf("FATAL: uncaught NLR %p\n", val);

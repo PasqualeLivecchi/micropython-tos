@@ -34,9 +34,13 @@
  * submix tables).
  */
 
+
 #include <string.h>
 #include "os_port.h"
 #include "crypto.h"
+
+#define htonl(x)        __bswap_32(x)
+#define ntohl(x)        __bswap_32(x)
 
 #define rot1(x) (((x) << 24) | ((x) >> 8))
 #define rot2(x) (((x) << 16) | ((x) >> 16))
