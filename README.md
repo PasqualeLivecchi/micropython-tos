@@ -8,7 +8,7 @@ The standard release Python.ISO.C will only run on [TempleOS (U)](https://github
 
 There is a legacy version (Python_TOS_NO_FP.ISO.C) without floating point support that will run on vanilla [Temple OS](http://templeos.org).
 
-Example usage:
+### Example usage:
 
 // Mount the Python ISO
 
@@ -22,4 +22,6 @@ Cd("M:/");
 
 Python;
 
-See the [MicroPython](http://www.micropython.org) project for more info, but obviously don't bother to contact them for support with this hacked up release as it is not an official port!
+### Credits
+- Thanks to Dr Jack Whitham for your work porting [frotz](https://github.com/jwhitham/frotz/) to Temple OS as described [here](https://www.jwhitham.org/2015/07/porting-third-party-programs-to-templeos.html).
+- [MicroPython](http://www.micropython.org)
